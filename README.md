@@ -1,5 +1,6 @@
 # Pythonscript
-A Python-to-Javascript focused on using JS in Python.
+A Python-to-Javascript transpiler focused on creating
+JS bindings in Python.
 
 This transpiler NEVER can run Python code. It directly
 transpiles into Javascript code. So basically you're
