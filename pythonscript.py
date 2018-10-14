@@ -7,7 +7,7 @@ def generate(code):
     generated_code = "// Generated with Pythonscript.\n"
 
     def generate_event(event):
-        def valueOf(obj):
+        def value_of(obj):
             if isinstance(obj, ast.Name):
                 return obj.id
             elif isinstance(obj, ast.Num):
@@ -15,19 +15,20 @@ def generate(code):
             elif isinstance(obj, ast.Str):
                 return obj.s
             elif isinstance(obj, ast.NameConstant):
-                if obj.value == True:
-                    return 'true'
-                elif obj.value == False:
-                    return 'false'
-                else:
+                if not isinstance(obj.value, bool):
                     return Exception("Unknown NameConstant")
+                
+                if obj.value:
+                    return 'true'
+                elif not obj.value:
+                    return 'false'
             elif isinstance(obj, ast.Dict):
                 obj_dict = {}
                 for key, val in zip(obj.keys, obj.values):
-                    obj_dict[valueOf(key)] = valueOf(val)
+                    obj_dict[value_of(key)] = value_of(val)
                 return obj_dict
             elif isinstance(obj, ast.List):
-                obj_list = list(map(valueOf, obj.elts))
+                obj_list = list(map(value_of, obj.elts))
                 return obj_list
             else:
                 raise Exception("Unknown type: %s" % str(type(event.value)))
@@ -41,9 +42,9 @@ def generate(code):
                     event_code += " = "
                 else:
                     raise Exception("Unknown target.")
-            event_code += str(valueOf(event.value))
+            event_code += str(value_of(event.value))
         elif isinstance(event, ast.Expr):
-            ... # TODO: Allow expressions
+            print('TODO: Allow expressions')
         else:
             raise Exception("Unknown event.")
 
