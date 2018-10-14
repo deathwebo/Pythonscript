@@ -22,3 +22,23 @@ So technically you can't use Python code in it. Pythonscript
 makes you able to create JS bindings in Python. It's still
 work-in-progress (WIP). So help me to devolop it faster
 with sending pull requests!
+
+## Usage
+- pythonscript gen FILE TARGET
+Generates Python code from TARGET and writes into FILE.
+Example:
+
+```python
+# FILE.py
+hello = "world"
+```
+
+Write
+```bash
+pythonscript gen FILE.py someuglyfile.js
+```
+to console and it will generate file like:
+
+```javascript
+var hello = "world";
+```
