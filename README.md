@@ -24,10 +24,9 @@ work-in-progress (WIP). So help me to devolop it faster
 with sending pull requests!
 
 ## Usage
-- pythonscript gen FILE TARGET
+- pythonscript gen `FILE` `TARGET`
 
-Generates Python code from TARGET and writes into FILE.
-Example:
+Generates Python code from `TARGET` and writes into `FILE`.
 
 ```python
 # FILE.py
