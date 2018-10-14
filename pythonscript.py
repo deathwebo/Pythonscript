@@ -49,9 +49,7 @@ def generate(code):
 
         return event_code + ";\n"
 
-    AST = ast.parse(code)
-
-    for event in AST.body:
+    for event in ast.parse(code):
         generated_code += generate_event(event)
 
     return generated_code
