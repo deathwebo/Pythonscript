@@ -1,15 +1,6 @@
 import ast
 import sys
 
-code = """
-a = [1, 6, "ok", 'lmao']
-"""
-AST = ast.parse(code)  # Remove this
-
-# if len(sys.argv) > 1:
-#     with open(sys.argv[1]) as file:
-#         AST = ast.parse(file.read())
-
 
 def generate(code):
     generated_code = ""
@@ -57,4 +48,14 @@ def generate(code):
 
     return generated_code
 
-print(generate(code))
+
+if len(sys.argv) > 1:
+    if sys.argv[1] == "gen":
+        try:
+            with open(sys.argv[2], 'r') as file:
+                with open(sys.argv[3], 'w') as target:
+                    target.write(generate(file.read()))
+        except Exception as e:
+            print("Error while reading & writing files:", e)
+else:
+    print("Generating code: pythonscript gen FILE TARGET")
