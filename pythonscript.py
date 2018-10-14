@@ -1,9 +1,10 @@
+#!/usr/bin/env python3
 import ast
 import sys
 
 
 def generate(code):
-    generated_code = ""
+    generated_code = "// Generated with Pythonscript.\n"
 
     def generate_event(event):
         def valueOf(obj):

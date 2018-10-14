@@ -25,6 +25,7 @@ with sending pull requests!
 
 ## Usage
 - pythonscript gen FILE TARGET
+
 Generates Python code from TARGET and writes into FILE.
 Example:
 
