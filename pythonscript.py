@@ -14,6 +14,13 @@ def generate(code):
                 return obj.n
             elif isinstance(obj, ast.Str):
                 return obj.s
+            elif isinstance(obj, ast.NameConstant):
+                if obj.value == True:
+                    return 'true'
+                elif obj.value == False:
+                    return 'false'
+                else:
+                    return Exception("Unknown NameConstant")
             elif isinstance(obj, ast.Dict):
                 obj_dict = {}
                 for key, val in zip(obj.keys, obj.values):
@@ -57,6 +64,6 @@ if len(sys.argv) > 1:
                 with open(sys.argv[3], 'w') as target:
                     target.write(generate(file.read()))
         except Exception as e:
-            print("Error while reading & writing files:", e)
+            print("Error while generating & writing files:", e)
 else:
     print("Generating code: pythonscript gen FILE TARGET")
